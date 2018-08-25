@@ -13,7 +13,12 @@ RUN wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Cen
 
 # 安装常用软件
 RUN yum install -y yum-plugin-ovl || true
-RUN yum install -y vim tar wget curl rsync bzip2 iptables tcpdump less telnet net-tools lsof sysstat cronie passwd openssl openssh-server epel-release
+RUN yum install -y vim tar wget curl rsync bzip2 iptables tcpdump less telnet net-tools lsof sysstat cronie passwd openssl openssh-server epel-release kde-l10n-Chinese glibc-common
+
+# 中文设置
+ENV LANG="zh_CN.UTF-8" 
+RUN echo "export LC_ALL=zh_CN.UTF-8"  >>  /etc/profile
+
 # 安装ssh
 RUN yum install passwd openssl openssh-server -y
 RUN ssh-keygen -q -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key -N ''
