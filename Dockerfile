@@ -10,7 +10,6 @@ RUN yum install wget -y
 # 更换阿里源
 RUN mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 RUN wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-RUN yum makecache
 
 # 安装常用软件
 RUN yum install -y yum-plugin-ovl || true
