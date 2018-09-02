@@ -4,7 +4,7 @@
 FROM hub.c.163.com/library/centos:7.2.1511
 MAINTAINER https://4xx.me
 
-RUN cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN \cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN yum install wget -y
 
 # 更换阿里源
