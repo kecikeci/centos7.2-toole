@@ -11,13 +11,16 @@ RUN yum install wget -y
 RUN mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 RUN wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 
+# 更新yum包 更新最新内核
+RUN yum update -y
+
 # 安装常用软件
 RUN yum install -y yum-plugin-ovl || true
 RUN yum install -y vim tar wget curl rsync bzip2 iptables tcpdump less telnet net-tools lsof sysstat cronie passwd openssl openssh-server epel-release kde-l10n-Chinese glibc-common
 
 # 中文设置
 ENV LANG="zh_CN.UTF-8" 
-RUN echo "export LC_ALL=zh_CN.UTF-8"  >>  /etc/profile
+RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
 
 # 安装ssh
 RUN yum install passwd openssl openssh-server -y
