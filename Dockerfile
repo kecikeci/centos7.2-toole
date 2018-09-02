@@ -4,7 +4,6 @@
 FROM hub.c.163.com/library/centos:7.2.1511
 MAINTAINER https://4xx.me
 
-RUN \cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN yum install wget -y
 
 # 更换阿里源
@@ -27,6 +26,9 @@ RUN echo "root:root123" | chpasswd
 # 中文设置
 ENV LANG="zh_CN.UTF-8" 
 RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
+
+# 时区设置
+RUN \cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # 更新yum包 更新最新内核
 RUN yum update -y
