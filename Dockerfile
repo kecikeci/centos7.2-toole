@@ -28,7 +28,7 @@ ENV LANG="zh_CN.UTF-8"
 RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
 
 # 时区设置
-RUN \cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone
 
 # 更新yum包 更新最新内核
 RUN yum update -y
